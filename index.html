@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=no, viewport-fit=cover">
+    <title>still yes · moving no · valentine</title>
+    <style>
+        /* MOBILE OPTIMIZED – YES stays still, NO runs away */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(145deg, #ffd9e8 0%, #ffb6c1 100%);
+            font-family: 'Quicksand', 'Segoe UI', 'Arial', cursive, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 12px;
+            position: relative;
+            overflow-x: hidden;
+            animation: softGlow 7s infinite alternate;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @keyframes softGlow {
+            0% { background: linear-gradient(145deg, #ffe6f0, #ffc0cb); }
+            100% { background: linear-gradient(145deg, #ffd5e5, #ffa7b9); }
+        }
+
+        /* ---------- BALLOONS – festive ---------- */
+        .balloon {
+            position: absolute;
+            bottom: -10px;
+            width: clamp(40px, 12vw, 60px);
+            height: clamp(50px, 15vw, 75px);
+            background: rgba(255, 140, 170, 0.75);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: inset -4px -6px 8px rgba(0,0,0,0.05), inset 4px 4px 12px rgba(255,255,255,0.6);
+            animation: floatUp 8s infinite ease-in-out;
+            z-index: 5;
+            pointer-events: none;
+            backdrop-filter: blur(1px);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-30px) rotate(4deg); opacity: 0.95; }
+            100% { transform: translateY(-65px) rotate(0deg); opacity: 0.5; }
+        }
+
+        .balloon::after {
+            content: "🎈";
+            position: absolute;
+            font-size: clamp(20px, 6vw, 30px);
+            top: -15px;
+            left: 10px;
+            transform: rotate(12deg);
+            opacity: 0.8;
+            text-shadow: 2px 3px 5px rgba(0,0,0,0.2);
+        }
+
+        .string {
+            position: absolute;
+            width: 1.8px;
+            height: 30px;
+            background: rgba(80, 60, 50, 0.5);
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .balloon-1 { left: 2%; animation-delay: 0s; background: #ffa5b0; width: 45px; height: 58px; }
+        .balloon-2 { left: 15%; animation-delay: 1.8s; background: #ffc2a1; width: 55px; height: 68px; }
+        .balloon-3 { left: 38%; animation-delay: 3.5s; background: #ffb3c6; width: 48px; height: 62px; }
+        .balloon-4 { left: 60%; animation-delay: 0.7s; background: #ffb7c5; width: 52px; height: 65px; }
+        .balloon-5 { left: 80%; animation-delay: 5s; background: #ffa7b3; width: 47px; height: 60px; }
+        .balloon-6 { left: 92%; animation-delay: 2.2s; background: #ffbfaf; width: 44px; height: 56px; }
+        .balloon-7 { left: 72%; animation-delay: 6s; background: #ffb0c0; width: 50px; height: 63px; }
+        .balloon-8 { left: 48%; animation-delay: 4.3s; background: #ffcad4; width: 42px; height: 55px; }
+
+        /* floating hearts */
+        .heart-float {
+            position: absolute;
+            font-size: clamp(18px, 7vw, 28px);
+            animation: floatUp 9s infinite alternate;
+            pointer-events: none;
+            opacity: 0.5;
+            z-index: 2;
+        }
+
+        /* main card – fully responsive */
+        .main-card {
+            background: rgba(255, 240, 245, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 48px 16px 48px 16px;
+            padding: clamp(20px, 6vw, 40px) clamp(16px, 5vw, 30px);
+            box-shadow: 0 20px 35px rgba(200, 30, 80, 0.25),
+                        0 0 0 3px rgba(255, 220, 240, 0.7),
+                        0 0 0 8px rgba(255, 182, 193, 0.4);
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+            border: 2px dashed #ff5e7e;
+            z-index: 50;
+            margin: 8px 0;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 12vw, 3.4rem);
+            color: #c2184b;
+            text-shadow: 3px 3px 0 #ffe0f0, 5px 5px 15px rgba(190, 30, 70, 0.3);
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            font-family: 'Pacifico', 'Quicksand', cursive;
+            word-break: break-word;
+        }
+
+        .sub {
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            color: #ac2347;
+            background: rgba(255, 250, 240, 0.8);
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            margin-bottom: 15px;
+            border: 1.5px solid white;
+            box-shadow: inset 1px 1px 6px rgba(255,255,255,0.9), inset -1px -1px 6px rgba(200,100,120,0.2);
+        }
+
+        /* playground – relative, with adapted height */
+        .button-vortex {
+            position: relative;
+            height: clamp(190px, 50vw, 240px);
+            width: 100%;
+            margin: 10px 0 10px;
+            touch-action: pan-y;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* YES BUTTON – stays still, always visible, centered */
+        .btn-yes-fixed {
+            padding: 14px 28px;
+            font-size: clamp(1.6rem, 7vw, 2.1rem);
+            font-weight: bold;
+            border: none;
+            border-radius: 60px 20px 60px 20px;
+            background: radial-gradient(circle at 30% 40%, #ff4d6d, #d6283c);
+            color: white;
+            box-shadow: 0 12px 0 #921f34, 0 15px 30px rgba(200, 30, 70, 0.5), 0 0 0 4px #fff9e6;
+            cursor: pointer;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 0 #7a1a2c;
+            border: 3px solid #ffeef2;
+            z-index: 150;
+            white-space: nowrap;
+            transition: transform 0.1s, box-shadow 0.1s;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            margin-bottom: 15px;
+            display: inline-block;
+            position: relative;  /* static in flow, not absolute */
+            transform: scale(1);
+        }
+
+        .btn-yes-fixed:active {
+            transform: scale(0.96);
+            box-shadow: 0 8px 0 #7a172b, 0 18px 35px #b81e4a;
+        }
+
+        /* MOVING NO BUTTON – absolute, runs away */
+        .btn-no-moving {
+            padding: 14px 24px;
+            font-size: clamp(1.4rem, 6vw, 1.9rem);
+            font-weight: bold;
+            border: none;
+            border-radius: 50px 20px 50px 20px;
+            background: radial-gradient(circle at 60% 30%, #ff95aa, #e6395a);
+            color: white;
+            box-shadow: 0 10px 0 #9e2240, 0 12px 25px rgba(190, 30, 70, 0.6), 0 0 0 3px #fff9e6;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #8e1e3a;
+            border: 2px solid #fff2f5;
+            position: absolute;
+            will-change: transform, left, top;
+            z-index: 200;
+            white-space: nowrap;
+            transition: transform 0.08s, box-shadow 0.1s;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: none;
+        }
+
+        .btn-no-moving:active {
+            transform: scale(0.95);
+            box-shadow: 0 6px 0 #7e1b36, 0 12px 20px #b81e4a;
+        }
+
+        .promise {
+            font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+            margin-top: 20px;
+            color: #982c4a;
+            background: rgba(255, 245, 240, 0.9);
+            padding: 12px 20px;
+            border-radius: 60px;
+            backdrop-filter: blur(3px);
+            border: 2px solid #ffa5b9;
+            display: inline-block;
+            width: auto;
+            max-width: 95%;
+            word-break: break-word;
+            line-height: 1.4;
+        }
+
+        footer {
+            margin-top: 20px;
+            color: #b43b55;
+            font-size: clamp(0.9rem, 4vw, 1.2rem);
+            border-top: 2px dotted #ff8899;
+            padding-top: 14px;
+            font-style: italic;
+        }
+
+        @media (max-width: 480px) {
+            .main-card {
+                padding: 22px 14px;
+            }
+            .btn-yes-fixed {
+                padding: 12px 22px;
+            }
+            .btn-no-moving {
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 8 balloons – valentine atmosphere -->
+    <div class="balloon balloon-1"><div class="string"></div></div>
+    <div class="balloon balloon-2"><div class="string"></div></div>
+    <div class="balloon balloon-3"><div class="string"></div></div>
+    <div class="balloon balloon-4"><div class="string"></div></div>
+    <div class="balloon balloon-5"><div class="string"></div></div>
+    <div class="balloon balloon-6"><div class="string"></div></div>
+    <div class="balloon balloon-7"><div class="string"></div></div>
+    <div class="balloon balloon-8"><div class="string"></div></div>
+
+    <!-- floating hearts and emojis -->
+    <div class="heart-float" style="top: 5%; left: 7%;">❤️🧡</div>
+    <div class="heart-float" style="top: 18%; left: 88%;">💘💝</div>
+    <div class="heart-float" style="top: 45%; left: 12%;">💖💗</div>
+    <div class="heart-float" style="top: 73%; left: 78%;">💞💕</div>
+    <div class="heart-float" style="top: 30%; left: 93%;">🌹❤️</div>
+    <div class="heart-float" style="top: 60%; left: 20%;">💌🥰</div>
+    <div class="heart-float" style="top: 82%; left: 42%;">🏹💘</div>
+    <div class="heart-float" style="top: 12%; left: 46%;">💋💓</div>
+
+    <!-- MAIN CARD – yes fixed, no runs -->
+    <div class="main-card">
+        <h1>💘 be mine? 💘</h1>
+        <div class="sub">you + me = ∞</div>
+
+        <!-- button area: YES is fixed, NO is absolute inside this container -->
+        <div class="button-vortex" id="buttonPlayground">
+            <!-- YES BUTTON – rock solid, always centered -->
+            <button class="btn-yes-fixed" id="yesButton">💖 YES! 💖</button>
+            
+            <!-- NO BUTTON – runs away, absolutely positioned -->
+            <button class="btn-no-moving" id="noButton">💔 no 💔</button>
+        </div>
+
+        <span class="promise" id="messageZone">💕 the YES button is always here. catch NO? 💕</span>
+        <footer>💗 14.02 · YES stays · NO runs · tap them! 💗</footer>
+    </div>
+
+    <script>
+        (function() {
+            "use strict";
+
+            // ----- ONLY NO BUTTON MOVES. YES IS STILL AND HAPPY. -----
+            const playground = document.getElementById('buttonPlayground');
+            const yesBtn = document.getElementById('yesButton');
+            const noBtn = document.getElementById('noButton');
+            const msg = document.getElementById('messageZone');
+
+            // ensure NO button is absolutely positioned for movement
+            playground.style.position = 'relative';
+            noBtn.style.position = 'absolute';
+            // YES stays as position: relative (default from class) – no movement applied
+
+            // Sweet messages when chasing NO
+            const chaseMessages = [
+                "💞 catch the NO!",
+                "🏃‍♀️ so fast!",
+                "✨ you almost got it!",
+                "💘 nope!",
+                "🌸 keeps running",
+                "🎈 evasive no",
+                "💝 persistent!",
+                "🌹 too quick!",
+                "💖 try again",
+                "🥰 almost!"
+            ];
+
+            // ----- YES BUTTON CLICK (always works, never moves) -----
+            function handleYesClick(e) {
+                e.stopPropagation();
+                msg.innerText = "💘 YES! forever valentine! 💘";
+                msg.style.background = "#ffe0f0";
+                msg.style.border = "4px solid #ff4d6d";
+                createMiniConfetti('❤️');
+                // give NO a little nudge – still moving!
+                moveNoButton();
+            }
+
+            // ----- NO BUTTON CLICK (you can catch it if you're fast) -----
+            function handleNoClick(e) {
+                e.stopPropagation();
+                msg.innerText = "😘 you caught NO! but YES is still waiting 💕";
+                msg.style.background = "#ffe0e7";
+                msg.style.border = "4px solid #b3405a";
+                createMiniConfetti('💖');
+                // move NO immediately after click (keeps running)
+                moveNoButton();
+            }
+
+            yesBtn.addEventListener('click', handleYesClick);
+            noBtn.addEventListener('click', handleNoClick);
+
+            // ----- MOVE NO BUTTON – safely inside playground (and only NO) -----
+            function moveNoButton() {
+                if (!playground || !noBtn) return;
+
+                const containerRect = playground.getBoundingClientRect();
+                const btnRect = noBtn.getBoundingClientRect();
+
+                const btnW = btnRect.width;
+                const btnH = btnRect.height;
+
+                let maxX = Math.max(0, containerRect.width - btnW - 6);
+                let maxY = Math.max(0, containerRect.height - btnH - 6);
+
+                // keep some margin
+                if (maxX < 5) maxX = 5;
+                if (maxY < 5) maxY = 5;
+
+                const newLeft = Math.floor(Math.random() * maxX);
+                const newTop = Math.floor(Math.random() * maxY);
+
+                noBtn.style.left = newLeft + 'px';
+                noBtn.style.top = newTop + 'px';
+            }
+
+            // move only NO button randomly (YES stays)
+            function moveNoRandomly() {
+                moveNoButton();
+                // update message occasionally 
+                if (Math.random() > 0.6) {
+                    msg.innerText = chaseMessages[Math.floor(Math.random() * chaseMessages.length)];
+                }
+            }
+
+            // ----- EVADE POINTER – only NO button flees, YES is still -----
+            function evadePointer(e) {
+                let clientX, clientY;
+                if (e.touches) {
+                    if (e.touches.length === 0) return;
+                    clientX = e.touches[0].clientX;
+                    clientY = e.touches[0].clientY;
+                } else {
+                    clientX = e.clientX;
+                    clientY = e.clientY;
+                }
+
+                // ONLY NO BUTTON flees from mouse/touch
+                const rectNo = noBtn.getBoundingClientRect();
+                const centerNoX = rectNo.left + rectNo.width/2;
+                const centerNoY = rectNo.top + rectNo.height/2;
+                const distNo = Math.hypot(clientX - centerNoX, clientY - centerNoY);
+                
+                // Flee if finger/mouse is close (120-150 range works for mobile)
+                if (distNo < 160) {
+                    moveNoButton();
+                }
+                // YES BUTTON – absolutely no movement. stays still.
+            }
+
+            // ----- keep NO inside boundaries, also avoid overlap with YES? -----
+            function keepNoInsideAndApart() {
+                // first: ensure NO is inside container bounds
+                const containerRect = playground.getBoundingClientRect();
+                const noRect = noBtn.getBoundingClientRect();
+                
+                // if NO escaped outside (rare), pull it back
+                if (noRect.left < containerRect.left || noRect.right > containerRect.right ||
+                    noRect.top < containerRect.top || noRect.bottom > containerRect.bottom) {
+                    moveNoButton();
+                }
+
+                // additionally, keep NO from hiding under YES (but still fun)
+                const yesRect = yesBtn.getBoundingClientRect();
+                const noRect2 = noBtn.getBoundingClientRect();
+                const overlap = !(yesRect.right < noRect2.left || yesRect.left > noRect2.right || 
+                                 yesRect.bottom < noRect2.top || yesRect.top > noRect2.bottom);
+                if (overlap) {
+                    // nudge NO away so it's not completely covered
+                    moveNoButton();
+                }
+            }
+
+            // ----- CONFETTI – stays festive -----
+            function createMiniConfetti(symbol = '❤️') {
+                for (let i = 0; i < 8; i++) {
+                    const span = document.createElement('span');
+                    span.innerText = symbol;
+                    span.style.position = 'fixed';
+                    span.style.left = Math.random() * 100 + '%';
+                    span.style.bottom = '20px';
+                    span.style.transform = 'scale(' + (0.7 + Math.random()) + ')';
+                    span.style.fontSize = (20 + Math.random() * 30) + 'px';
+                    span.style.opacity = '0.9';
+                    span.style.pointerEvents = 'none';
+                    span.style.zIndex = '9999';
+                    span.style.animation = 'floatUp 1.8s ease-out forwards';
+                    span.style.textShadow = '0 0 6px pink';
+                    document.body.appendChild(span);
+                    setTimeout(() => { span.remove(); }, 1700);
+                }
+            }
+
+            // ----- INITIAL PLACEMENT: YES stays naturally in center (flex from container)
+            // NO starts at a specific corner, not overlapping YES
+            function initialPositions() {
+                // YES is already in normal flow, centered thanks to flex column on .button-vortex
+                // Set initial NO position (bottom right corner)
+                noBtn.style.left = '180px';
+                noBtn.style.top = '100px';
+                
+                // ensure it's inside after layout
+                setTimeout(() => {
+                    moveNoButton();  // random but safe
+                }, 20);
+            }
+
+            // ----- EVENT LISTENERS – only NO evasion -----
+            document.addEventListener('mousemove', evadePointer);
+            document.addEventListener('touchmove', evadePointer, { passive: false });
+            document.addEventListener('touchstart', evadePointer, { passive: true });
+
+            // move NO button periodically – never stops running!
+            setInterval(moveNoRandomly, 550);
+            
+            // keep NO in bounds and away from YES
+            setInterval(keepNoInsideAndApart, 400);
+
+            // resize handling
+            window.addEventListener('resize', function() {
+                setTimeout(() => {
+                    moveNoButton();
+                }, 30);
+            });
+            window.addEventListener('orientationchange', function() {
+                setTimeout(() => {
+                    moveNoButton();
+                }, 50);
+            });
+
+            // disable context menu on buttons (mobile long press)
+            yesBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+            noBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+
+            // observe playground size changes to adjust NO
+            const observer = new ResizeObserver(() => {
+                moveNoButton();
+            });
+            observer.observe(playground);
+
+            // start everything
+            initialPositions();
+
+            // little extra: move NO on touchend to keep it lively
+            document.addEventListener('touchend', function() {
+                if (Math.random() > 0.5) {
+                    moveNoButton();
+                }
+            });
+
+            // ensure YES is never moved – we never call move on yesBtn.
+            // YES is still, solid, always there for you.
+        })();
+    </script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+</body>
+</html>
